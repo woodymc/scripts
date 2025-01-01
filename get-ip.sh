@@ -11,9 +11,9 @@ for host in ${IDENTHOST}; do
         avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
         loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
         if [ "$loss" == 100 ]; then
-                printf "║ $host IP: $ip ping: Not response      loss: $loss\x25 ║\n"
+                printf "║ $host        IP: $ip ping: Not response      loss: $loss\x25 ║\n"
         else
-                printf "║ $host     IP: $ip ping: $avg(AVG) loss: $loss\x25 ║\n"
+                printf "║ $host        IP: $ip ping: $avg(AVG) loss: $loss\x25 ║\n"
         fi
 done
 printf "║                                                                               ║\n"

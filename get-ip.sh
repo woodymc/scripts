@@ -16,7 +16,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	for host in ${IDENTHOST}; do
                 ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then
-		        resp=$(ping -qc$COUNT '$ip')
+		        resp=$(ping -qc$COUNT $ip)
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")

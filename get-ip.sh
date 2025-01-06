@@ -2,7 +2,8 @@
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
-iface="tun1"
+iface="tun0"
+
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "checked\n"
 else

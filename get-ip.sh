@@ -4,10 +4,10 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 out="tun0"
 
-if [ -n "$1" ]
-then
-	out=$1
-fi
+#if [ -n "$1" ]
+#then
+#	out=$1
+#fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
 printf "║                                          via $out                                        ║\n"

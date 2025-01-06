@@ -26,7 +26,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		                printf "║ \033[34;1m$host\033[0m\x09IP: \033[32;1m$geo\033[0m|$ip\x09ping: $avg(AVG)\x09\033[33;1mloss: $loss\x25\033[0m\x09║\n"
 		        fi
 	  	else
-    			printf "║ \033[34;1m$host\033[0m\x09IP: XX|\033[31;1mNOT RESOLV\033[31;1m\033[0m\x09\x09\x09\x09\x09║\n"
+    			printf "║ \033[34;1m$host\033[0m\x09IP: XX|\033[31;1mNOT RESOLV\033[31;1m\033[0m\x09\x09\x09\x09\x09\x09║\n"
        		fi
 	done
 	printf "║                                                                               ║\n"

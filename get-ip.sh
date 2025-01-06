@@ -14,8 +14,8 @@ iface="tun0"
 
 #read -t 8 -p "Enter checked interface (timeout in 8 seconds):" riface
 
-if [[ -n "$0" ]]; then
-	iface=$0
+if [[ -n "$1" ]]; then
+	iface=$1
 fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then

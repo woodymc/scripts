@@ -19,8 +19,9 @@ if [[ -n "$1" ]]; then
 fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
-	printf "╔═════════════════════════════════$COLOR_GREEN Check route$COLOR_RESET ═════════════════════════════════╗\n"
-	printf "║                                   $COLOR_GREEN via $COLOR_MAGENTA$iface$COLOR_RESET                           	║\n"
+	printf "╔════════════════════════════════════════════════════════════════════════════════╗\n"
+	printf "║                       $COLOR_GREEN Check route via $COLOR_MAGENTA$iface$COLOR_RESET                           	║\n"
+	printf "║										║\n"
 	for host in ${IDENTHOST}; do
                 ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then

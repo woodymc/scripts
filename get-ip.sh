@@ -12,13 +12,24 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 iface="tun0"
 
-read -t 8 -p "Enter checked interface (timeout in 8 seconds):" riface
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -i)
+      iface="$2"
+      shift 4
+      exit 1
+      ;;
+  esac
+done
 
-if [[ -n "$riface" ]]; then
-	iface=$riface
-else
-	printf "\nChecking default interface tun0\n"
-fi
+
+#read -t 8 -p "Enter checked interface (timeout in 8 seconds):" riface
+
+#if [[ -n "$riface" ]]; then
+#	iface=$riface
+#else
+#	printf "\nChecking default interface tun0\n"
+#fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═════════════════════════════════$COLOR_GREEN Check route$COLOR_RESET ═════════════════════════════════╗\n"
@@ -31,9 +42,9 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
 		        if [ "$loss" == 100 ]; then
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_RESET\x09$COLOR_YELLOW''loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_RESET\x09$COLOR_YELLOW loss: $loss\x25$COLOR_RESET\x09║\n"
 		        else
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)\x09$COLOR_YELLOW''loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)\x09$COLOR_YELLOW loss: $loss\x25$COLOR_RESET\x09║\n"
 		        fi
 	  	else
     			printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: XX|$COLOR_RED NOT RESOLV$COLOR_RESET\x09\x09\x09\x09\x09\x09║\n"

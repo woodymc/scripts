@@ -21,8 +21,8 @@ else
 fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
-	printf "╔═════════════════════════════════ $COLOR_GREENCheck route$COLOR_RESET ═════════════════════════════════╗\n"
-	printf "║                                    $COLOR_GREENvia $COLOR_MAGENTA$iface$COLOR_RESET                           	║\n"
+	printf "╔═════════════════════════════════ $COLOR_GREEN Check route$COLOR_RESET ═════════════════════════════════╗\n"
+	printf "║                                   $COLOR_GREEN via $COLOR_MAGENTA$iface$COLOR_RESET                           	║\n"
 	for host in ${IDENTHOST}; do
                 ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then
@@ -31,12 +31,12 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
 		        if [ "$loss" == 100 ]; then
-		                printf "║ \033[34;1m$host\033[0m\x09IP: \033[32;1m$geo\033[0m|$ip\x09ping: \033[31;1mNot response\033[0m\x09\033[33;1mloss: $loss\x25\033[0m\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_RESET\x09$COLOR_YELLOW''loss: $loss\x25$COLOR_RESET\x09║\n"
 		        else
-		                printf "║ \033[34;1m$host\033[0m\x09IP: \033[32;1m$geo\033[0m|$ip\x09ping: $avg(AVG)\x09\033[33;1mloss: $loss\x25\033[0m\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)\x09$COLOR_YELLOW''loss: $loss\x25$COLOR_RESET\x09║\n"
 		        fi
 	  	else
-    			printf "║ \033[34;1m$host\033[0m\x09IP: XX|\033[31;1mNOT RESOLV\033[31;1m\033[0m\x09\x09\x09\x09\x09\x09║\n"
+    			printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: XX|$COLOR_RED NOT RESOLV$COLOR_RESET\x09\x09\x09\x09\x09\x09║\n"
        		fi
 	done
 	printf "║                                                                               ║\n"

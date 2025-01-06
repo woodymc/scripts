@@ -14,7 +14,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"
 	printf "║                                    \033[32;1mvia \033[35;1m$iface\033[0m                           	║\n"
 	for host in ${IDENTHOST}; do
-                ip=$(curl -s --fail --interface $iface $host)
+                ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then
 		        resp=$(ping -qc$COUNT '$ip')
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')

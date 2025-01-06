@@ -1,4 +1,12 @@
 #!/bin/sh
+COLOR_RED="\033[31;1m"
+COLOR_GREEN="\033[32;1m"
+COLOR_YELLOW="\033[33;1m"
+COLOR_BLUE="\033[34;1m"
+COLOR_MAGENTA="\033[35;1m"
+COLOR_CYAN="\033[36;1m"
+COLOR_RESET="\033[0m"
+
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
@@ -13,8 +21,8 @@ else
 fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
-	printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"
-	printf "║                                    \033[32;1mvia \033[35;1m$iface\033[0m                           	║\n"
+	printf "╔═════════════════════════════════ $COLOR_GREENCheck route$COLOR_RESET ═════════════════════════════════╗\n"
+	printf "║                                    $COLOR_GREENvia $COLOR_MAGENTA$iface$COLOR_RESET                           	║\n"
 	for host in ${IDENTHOST}; do
                 ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then

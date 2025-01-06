@@ -10,7 +10,7 @@ then
 fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
-printf "║                                   via $out                                     ║\n"
+printf "║                                    via $out                                     ║\n"
 for host in ${IDENTHOST}; do
         ip=$(curl -s --interface $out $host)
         resp=$(ping -qc$COUNT "$ip")

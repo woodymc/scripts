@@ -2,11 +2,11 @@
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
-out="tun0"
+iface="tun0"
 
-if [read -t 5 -p "Enter checked interface: " rout]
+if [read -t 5 -p "Enter checked interface: " rif]
 then
-	out=$rout
+	iface=$rif
 fi
 
 #if [ -n "$1" ]
@@ -15,9 +15,9 @@ fi
 #fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
-printf "║                                    via $out                                     ║\n"
+printf "║                                    via $iface                                     ║\n"
 for host in ${IDENTHOST}; do
-        ip=$(curl -s --interface $out $host)
+        ip=$(curl -s --interface $iface $host)
         resp=$(ping -qc$COUNT "$ip")
         avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
         loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')

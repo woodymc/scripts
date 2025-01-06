@@ -4,11 +4,11 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 
 read -t 5 -p "Enter checked interface (timeout in 5 seconds, default \033[35;1mtun0\033[0m):\n" riface
-if [[ -n $riface ]]; then
-  iface=$riface
-else
+#if [[ -n $riface ]]; then
+#  iface=$riface
+#else
   iface="tun0"
-fi
+#fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"

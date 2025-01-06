@@ -4,7 +4,7 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 out="tun0"
 
-if (read -t 5 -p "Enter checked interface: " rout)
+if [read -t 5 -p "Enter checked interface: " rout]
 then
 	out=$rout
 fi

@@ -2,7 +2,7 @@
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
-iface="tun0"
+iface="tun1"
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"

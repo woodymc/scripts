@@ -5,15 +5,15 @@ COUNT=10
 
 if [ -n "$1" ]
 then
-	$if=$1
+	out=$1
 else
-	$if="tun0"
+	out="tun0"
 fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
-printf "║                                          via $if                                        ║\n"
+printf "║                                          via $out                                        ║\n"
 for host in ${IDENTHOST}; do
-        ip=$(curl -s --interface $if $host)
+        ip=$(curl -s --interface $out $host)
         resp=$(ping -qc$COUNT "$ip")
         avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
         loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')

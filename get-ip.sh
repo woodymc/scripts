@@ -29,9 +29,9 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
 		        if [ "$loss" == 100 ]; then
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_RESET\x09$COLOR_YELLOW loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_YELLOW\x09loss: $loss\x25$COLOR_RESET\x09║\n"
 		        else
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)\x09$COLOR_YELLOW loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)$COLOR_YELLOW\x09loss: $loss\x25$COLOR_RESET\x09║\n"
 		        fi
 	  	else
     			printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: XX|$COLOR_RED NOT RESOLV$COLOR_RESET\x09\x09\x09\x09\x09\x09║\n"

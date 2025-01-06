@@ -4,7 +4,7 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 iface="tun0"
 
-read -t 5 -p "Enter checked interface (timeout in 5 seconds):\n" riface
+read -p "Enter checked interface (timeout in 5 seconds):\n" riface
 
 if [[ -n "$riface" ]]; then
   iface=$riface

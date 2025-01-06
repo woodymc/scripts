@@ -10,8 +10,8 @@ else
 	printf "not found\n"
 fi
 
-printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
-printf "║                                    via $iface                               		║\n"
+printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"
+printf "║                                    \033[32;1mvia \035[32;$iface\033[0m                               		║\n"
 for host in ${IDENTHOST}; do
         ip=$(curl -s --interface $iface $host)
         resp=$(ping -qc$COUNT "$ip")

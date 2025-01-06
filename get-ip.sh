@@ -4,8 +4,7 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 iface="tun0"
 
-if [read -t 5 -p "Enter checked interface: " rif]
-then
+if read -t 5 -p "Enter checked interface: " rif; then
 	iface=$rif
 fi
 

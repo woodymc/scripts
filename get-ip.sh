@@ -3,7 +3,7 @@ printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 
-read -t 5 -p "Enter checked interface (timeout in 5 seconds, default \033[35;1mtun0\033[0m):\n" riface
+read -t 5 -p "Enter checked interface (timeout in 5 seconds):\n" riface
 if [[ -n "$riface" ]]; then
   iface=$riface
 else

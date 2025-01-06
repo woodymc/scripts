@@ -4,8 +4,10 @@ IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
 iface="tun0"
 
-if read -t 5 -p "Enter checked interface: " rif; then
-	iface=$rif
+if $(ip a | grep $iface); then
+	printf "checked"
+else
+	printf "not found"
 fi
 
 #if [ -n "$1" ]

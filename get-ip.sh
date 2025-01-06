@@ -15,7 +15,7 @@ fi
 #fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
-printf "║                                    via $iface                                     ║\n"
+printf "║                                    via $iface                               		║\n"
 for host in ${IDENTHOST}; do
         ip=$(curl -s --interface $iface $host)
         resp=$(ping -qc$COUNT "$ip")

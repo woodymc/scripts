@@ -2,11 +2,17 @@
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
-iface="tun1"
+
+read -t 5 -p "Enter checked interface (timeout in 5 seconds, default \033[35;1mtun0\033[0m):\n" riface
+if [ -n "$riface" ]; then
+  iface=$riface
+else
+  iface="tun0"
+fi
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═════════════════════════════════ \033[32;1mCheck route\033[0m ═════════════════════════════════╗\n"
-	printf "║                                    \033[32;1mvia \033[34;1m$iface\033[0m                           		║\n"
+	printf "║                                    \033[32;1mvia \033[35;1m$iface\033[0m                           		║\n"
 	for host in ${IDENTHOST}; do
 	        ip=$(curl -s --interface $iface $host)
 	        resp=$(ping -qc$COUNT "$ip")

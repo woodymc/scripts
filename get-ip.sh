@@ -2,18 +2,13 @@
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
 COUNT=10
-iface="tun0"
+iface="tun1"
 
 if $(ip a | grep $iface); then
-	printf "checked"
+	printf "checked\n"
 else
-	printf "not found"
+	printf "not found\n"
 fi
-
-#if [ -n "$1" ]
-#then
-#	out=$1
-#fi
 
 printf "╔═════════════════════════════════\033[32;1m Check route \033[0m═════════════════════════════════╗\n"
 printf "║                                    via $iface                               		║\n"

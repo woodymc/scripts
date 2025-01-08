@@ -61,12 +61,6 @@ check_file () {
 	fi
 }
 
-test () {
-	curl -s $1$3 >  $2$3
-}
-
-#test "$GIT_URL" "$SB_CFG_DIR" "$FILE_LOG_CFG"
-
 check_file $GIT_URL $CFG_DIR sing-box
 
 check_file $GIT_URL $SB_CFG_DIR $FILE_LOG_CFG 
@@ -75,6 +69,6 @@ check_file $GIT_URL $SB_CFG_DIR $FILE_IN_CFG
 check_file $GIT_URL $SB_CFG_DIR $FILE_ROUTE_CFG
 check_file $GIT_URL $SB_CFG_DIR $FILE_OUT_CFG
 
-#service sing-box restart
+service sing-box restart
 
 printf "______________________________________\n\n"

@@ -19,8 +19,8 @@ if [[ -n "$1" ]]; then
 fi
 
 if ! $(opkg list-installed | grep -q jq); then
-	printf "###jq NOT installed";
-	opkg update
+#	printf "###jq NOT installed";
+	opkg install jq
 fi
 
 

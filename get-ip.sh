@@ -18,16 +18,18 @@ if [[ -n "$1" ]]; then
 	iface=$1
 fi
 
-if ! $(opkg list-installed | grep -q jq); then
-#	printf "###jq NOT installed";
-	opkg update --verbosity=0
- 	opkg install jq --verbosity=0
-fi
-
+# Check and install opkg programm
+CheckProgramm()	{
+	if ! $(opkg list-installed | grep -q $1); then
+		opkg update --verbosity=0
+	 	opkg install $1 --verbosity=0
+	fi
+}
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═══════════════════════════════════════════════════════════════════════════════╗\n"
 	printf "║			$COLOR_GREEN Check route via $COLOR_MAGENTA$iface$COLOR_GREEN interface$COLOR_RESET\x09\x09\x09\x09║\n"
+ 	CheckProgramm 'jq'
 	printf "║										║\n"
 	for host in ${IDENTHOST}; do
                 ip=$(curl -s --interface $iface $host)

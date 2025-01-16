@@ -20,7 +20,7 @@ fi
 
 if ! $(opkg list-installed | grep -q jq); then
 #	printf "###jq NOT installed";
-	opkg update && opkg install jq
+	opkg update && opkg install jq --verbosity=0
 fi
 
 

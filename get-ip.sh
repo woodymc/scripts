@@ -8,15 +8,26 @@ C_CYN="\033[36;1m"
 C_RST="\033[0m"
 
 printf "\033c" //clear screen
-IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io ifconfig.co'
-COUNT=10
+IDENTHOSTS='2ip.ru ifconfig.me showip.net 2ip.io ifconfig.co'
+cnt=10
 iface="tun0"
 
-#read -t 8 -p "Enter checked interface (timeout in 8 seconds):" riface
+HelpShow()	{
+	echo ""
+	echo "Usage: $0 -f folder -u"
+	echo -e "\t-i interface name"
+	echo -e "\t-с ping count"
+	exit 1 # Exit script after printing help
+}
 
-if [[ -n "$1" ]]; then
-	iface=$1
-fi
+while getopts "i:c:" opt; do
+	case "$opt" in
+		i ) iface="$OPTARG";;
+		c ) cnt="$OPTARG";;
+		h ) helpShow;;
+		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
+	esac
+done
 
 # Check and install opkg programm
 CheckProgramm()	{
@@ -31,13 +42,13 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "║			$C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09\x09\x09║\n"
  	CheckProgramm 'jq'
 	printf "║										║\n"
-	for host in ${IDENTHOST}; do
+	for host in ${IDENTHOSTS}; do
                 ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then
-		        resp=$(ping -qc$COUNT $ip)
+		        resp=$(ping -qc$cnt $ip)
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
-		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
+		        geo=$(curl -s "https://get.geojs.io/v1/ip/cntry.json?ip=$ip" | jq -r ".[0].cntry")
 		        if [ "$loss" == 100 ]; then
 		                printf "║ $C_BLU$host$C_RST\x09IP: $C_GRN$geo$C_RST|$ip\x09ping:$C_RED Not response$C_YEL\x09loss: $loss\x25$C_RST\x09║\n"
 		        else

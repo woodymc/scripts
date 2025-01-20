@@ -3,15 +3,13 @@
 FILE_PATH='/etc/config/frpc'	# default path of config file to frp client 
 
 server_addr='192.168.1.1'	# ip or hostname frp server 
-server_port='7000'			# connect port to frp server
+server_port='7000'		# connect port to frp server
 token='12345678-9abc-def0-1234-56789abcdef0'	# token frp
 
 local_ip='127.0.0.1'	# localhost or ip to forward port
-
-ssh_local_port=22		# default ssh port
+ssh_local_port=22	# default ssh port
 ssh_remote_port=4000	# start port for client
-
-web_local_port=80		# default web port
+web_local_port=80	# default web port
 web_remote_port=8000	# start port for client
 
 client=0
@@ -19,6 +17,13 @@ client=0
 re='^[0-9]+$'
 
 HelpShow()	{
+	echo ""
+	echo "Usage: $0 -a addr -c client -p port -t token"
+	echo -e "\t-a url or IP of FRPS"
+	echo -e "\t-c number of client"
+ 	echo -e "\t-p port of FRPS"
+	echo -e "\t-t token of FRPS"
+	exit 1 # Exit script after printing help
 }
 
 while getopts "a:c:hp:t:" opt; do

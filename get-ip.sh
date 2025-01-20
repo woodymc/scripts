@@ -8,7 +8,7 @@ C_CYN="\033[36;1m"
 C_RST="\033[0m"
 
 printf "\033c" //clear screen
-IDENTHOSTS='2ip.ru ifconfig.me showip.net 2ip.io ifconfig.co'
+IDENTHOSTS='2ip.ru ifconfig.co ifconfig.me showip.net 2ip.io'
 cnt=10
 iface="tun0"
 

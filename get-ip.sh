@@ -8,7 +8,7 @@ COLOR_CYAN="\033[36;1m"
 COLOR_RESET="\033[0m"
 
 printf "\033c" //clear screen
-IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io'
+IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io ifconfig.co'
 COUNT=10
 iface="tun0"
 

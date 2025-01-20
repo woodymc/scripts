@@ -1,11 +1,11 @@
 #!/bin/sh
-COLOR_RED="\033[31;1m"
-COLOR_GREEN="\033[32;1m"
-COLOR_YELLOW="\033[33;1m"
-COLOR_BLUE="\033[34;1m"
-COLOR_MAGENTA="\033[35;1m"
-COLOR_CYAN="\033[36;1m"
-COLOR_RESET="\033[0m"
+C_RED="\033[31;1m"
+C_GRN="\033[32;1m"
+C_YEL="\033[33;1m"
+C_BLU="\033[34;1m"
+C_MGT="\033[35;1m"
+C_CYN="\033[36;1m"
+C_RST="\033[0m"
 
 printf "\033c" //clear screen
 IDENTHOST='2ip.ru ifconfig.me showip.net 2ip.io ifconfig.co'
@@ -28,7 +28,7 @@ CheckProgramm()	{
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔═══════════════════════════════════════════════════════════════════════════════╗\n"
-	printf "║			$COLOR_GREEN Check route via $COLOR_MAGENTA$iface$COLOR_GREEN interface$COLOR_RESET\x09\x09\x09\x09║\n"
+	printf "║			$C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09\x09\x09║\n"
  	CheckProgramm 'jq'
 	printf "║										║\n"
 	for host in ${IDENTHOST}; do
@@ -39,19 +39,19 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
 		        if [ "$loss" == 100 ]; then
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping:$COLOR_RED Not response$COLOR_YELLOW\x09loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $C_BLU$host$C_RST\x09IP: $C_GRN$geo$C_RST|$ip\x09ping:$C_RED Not response$C_YEL\x09loss: $loss\x25$C_RST\x09║\n"
 		        else
-		                printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: $COLOR_GREEN$geo$COLOR_RESET|$ip\x09ping: $avg(AVG)$COLOR_YELLOW\x09loss: $loss\x25$COLOR_RESET\x09║\n"
+		                printf "║ $C_BLU$host$C_RST\x09IP: $C_GRN$geo$C_RST|$ip\x09ping: $avg(AVG)$C_YEL\x09loss: $loss\x25$C_RST\x09║\n"
 		        fi
 	  	else
-    			printf "║ $COLOR_BLUE$host$COLOR_RESET\x09IP: XX|$COLOR_RED NOT RESOLV$COLOR_RESET\x09\x09\x09\x09\x09\x09║\n"
+    			printf "║ $C_BLU$host$C_RST\x09IP: --|$C_RED NOT RESOLV$C_RST\x09\x09\x09\x09\x09\x09║\n"
        		fi
 	done
 	printf "║                                                                               ║\n"
 	printf "╚═══════════════════════════════════════════════════════════════════════════════╝\n"
 else
 	printf "╔═══════════════════════════════════════════════════════════════════════════════╗\n"
-	printf "║                           interface $COLOR_MAGENTA$iface$COLOR_RESET not found				║\n"
+	printf "║                           interface $C_MGT$iface$C_RST not found				║\n"
 	printf "╚═══════════════════════════════════════════════════════════════════════════════╝\n"
 fi
 

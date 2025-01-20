@@ -43,7 +43,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
  	CheckProgramm 'jq'
 	printf "║										║\n"
 	for host in ${IDENTHOSTS}; do
-                ip=$(curl -sI $iface $host)
+                ip=$(curl -s --interface $iface $host)
                 if [[ -n "$ip" ]]; then
 		        resp=$(ping -q -c $cnt -W 2 $ip)
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')

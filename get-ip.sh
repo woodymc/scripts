@@ -32,8 +32,8 @@ done
 # Check and install opkg programm
 CheckProgramm()	{
 	if ! $(opkg list-installed | grep -q $1); then
-		opkg update --verbosity=0
-	 	opkg install $1 --verbosity=0
+		opkg update -V0
+	 	opkg install $1 -V0
 	fi
 }
 
@@ -45,7 +45,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	for host in ${IDENTHOSTS}; do
                 ip=$(curl -si $iface $host)
                 if [[ -n "$ip" ]]; then
-		        resp=$(ping -qc$cnt -w 5 -W 2 $ip)
+		        resp=$(ping -q -c $cnt -w 5 -W 2 $ip)
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s https://get.geojs.io/v1/ip/country.json?ip=$ip | jq -r .[0].country)

@@ -48,7 +48,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        resp=$(ping -qc$cnt -w 5 -W 2 $ip)
 		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
-		        geo=$(curl -s "https://get.geojs.io/v1/ip/country.json?ip=$ip" | jq -r ".[0].country")
+		        geo=$(curl -s https://get.geojs.io/v1/ip/country.json?ip=$ip | jq -r .[0].country)
 		        if [ "$loss" == 100 ]; then
 		                printf "║ $C_BLU$host$C_RST\x09IP: $C_GRN$geo$C_RST|$ip\x09ping:$C_RED Not response$C_YEL\x09loss: $loss\x25$C_RST\x09║\n"
 		        else

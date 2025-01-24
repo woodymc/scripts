@@ -10,6 +10,13 @@ for lang in ${LANGUAGES}; do
                 opkg remove $(opkg list-installed | grep '\x2d'$lang' ' | awk -e '{print $1}' | tr '\n' ' ')
         fi
 done
+# remove luci language pack addition
+uci delete luci.languages
+# select RU language pack
+uci add luci internal
+uci rename luci.@internal[-1]='languages'
+uci set luci.languages.ru='Русский'
+uci commit
 # upgrade all installed packages
 opkg list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade
 # install new packages

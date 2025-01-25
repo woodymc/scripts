@@ -55,7 +55,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		                printf "║ $C_BLU$host$C_RST\x09IP: $C_GRN$geo$C_RST|$ip\x09ping: $avg(AVG)$C_YEL\x09loss: $loss\x25$C_RST\x09║\n"
 		        fi
 	  	else
-    			printf "║ $C_BLU$host$C_RST\x09IP: --|$C_RED NOT RESOLV$C_RST\x09\x09\x09\x09\x09\x09║\n"
+    			printf "║ $C_BLU$host$C_RST\x09IP: --|$C_RED""NOT RESOLVED$C_RST\x09\x09\x09\x09\x09\x09║\n"
        		fi
 	done
 	printf "║                                                                               ║\n"

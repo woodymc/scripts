@@ -64,6 +64,6 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╚═══════════════╧═══════════════════════╧═══════════════╧════════╝\n"
 else
 	printf "╔════════════════════════════════════════════════════════════════╗\n"
-	printf "║		    interface $C_MGT$iface$C_RST not found 		 	║\n"
+	printf "║		    interface $C_MGT$iface$C_RST not found 			 ║\n"
 	printf "╚════════════════════════════════════════════════════════════════╝\n"
 fi

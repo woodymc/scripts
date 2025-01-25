@@ -52,12 +52,12 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
 		        geo=$(curl -s https://get.geojs.io/v1/ip/country.json?ip=$ip | jq -r .[0].country)
 		        if [ "$loss" == 100 ]; then
-		                printf "║ $C_BLU$host$C_RST\x09│ [$C_GRN$geo$C_RST]$ip\x09│$C_RED    Not response$C_RST\x09│$C_YEL  $loss\x25$C_RST\x09 ║\n"
+		                printf "║ $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│$C_RED    Not response$C_RST\x09│$C_YEL  $loss\x25$C_RST\x09 ║\n"
 		        else
-		                printf "║ $C_BLU$host$C_RST\x09│ [$C_GRN$geo$C_RST]$ip\x09│    $avg(AVG)$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
+		                printf "║ $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│    $avg(AVG)$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
 		        fi
 	  	else
-    			printf "║ $C_BLU$host$C_RST\x09│ [--]$C_RED""NOT RESOLVED$C_RST\x09│\x09\x09\x09│\x09 ║\n"
+    			printf "║ $C_BLU$host$C_RST\x09│  [--]$C_RED""NOT RESOLVED$C_RST\x09│\x09\x09\x09│\x09 ║\n"
        		fi
 	done
 #	printf "║                                                               ║\n"

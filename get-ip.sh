@@ -40,7 +40,7 @@ CheckProgramm()	{
 if [[ -n "$(ip a | grep $iface)" ]]; then
 	CheckProgramm 'jq'
 	printf "╔════════════════════════════════════════════════════════════════╗\n"
-	printf "║	     $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09 ║\n"
+	printf "║		   $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09 ║\n"
 	printf "╟───────────────┬───────────────────────┬───────────────┬────────╢ \n"
 	printf "║      url	│   through IP point	│   ping(AVG)	│  loss  ║ \n"
 	printf "╟───────────────┼───────────────────────┼───────────────┼────────╢ \n"
@@ -64,6 +64,6 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╚═══════════════╧═══════════════════════╧═══════════════╧════════╝\n"
 else
 	printf "╔════════════════════════════════════════════════════════════════╗\n"
-	printf "║		   interface $C_MGT$iface$C_RST not found 		 ║\n"
+	printf "║		      interface $C_MGT$iface$C_RST not found 		 ║\n"
 	printf "╚════════════════════════════════════════════════════════════════╝\n"
 fi

@@ -38,27 +38,27 @@ CheckProgramm()	{
 }
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
- 	CheckProgramm 'jq'
+	CheckProgramm 'jq'
 	printf "╔════════════════════════════════════════════════════════════════════════╗\n"
 	printf "║		     $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09\x09 ║\n"
 	printf "╟───────────────┬───────────────────────┬───────────────────────┬────────╢ \n"
 	printf "║      url	│   through IP point	│    ping (to point) 	│  loss  ║ \n"
 	printf "╟───────────────┼───────────────────────┼───────────────────────┼────────╢ \n"
 	for host in ${IDENTHOSTS}; do
-                ip=$(curl -s --interface $iface $host)
-                if [[ -n "$ip" ]]; then
-		        resp=$(ping -q -c $cnt -W 2 $ip)
-		        avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
-		        loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
-		        geo=$(curl -s https://get.geojs.io/v1/ip/country.json?ip=$ip | jq -r .[0].country)
-		        if [ "$loss" == 100 ]; then
-		                printf "║ $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│$C_RED    Not response$C_RST\x09│$C_YEL  $loss\x25$C_RST\x09 ║\n"
-		        else
-		                printf "║ $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│    $avg(AVG)$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
-		        fi
-	  	else
-    			printf "║ $C_BLU$host$C_RST\x09│  [--]$C_RED""NOT RESOLVED$C_RST\x09│\x09\x09\x09│\x09 ║\n"
-       		fi
+		ip=$(curl -s --interface $iface $host)
+		if [[ -n "$ip" ]]; then
+			resp=$(ping -q -c $cnt -W 2 $ip)
+			avg=$(echo "$resp" | awk -F'[/=]' 'END{print $6}')
+			loss=$(echo "$resp" | awk '/packet loss/ {print $7}' | tr -d '%')
+			geo=$(curl -s https://get.geojs.io/v1/ip/country.json?ip=$ip | jq -r .[0].country)
+			if [ "$loss" == 100 ]; then
+				printf "║  $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│$C_RED    Not response$C_RST\x09│$C_YEL  $loss\x25$C_RST\x09 ║\n"
+			else
+				printf "║  $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST]$ip\x09│    $avg(AVG)$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
+			fi
+		else
+			printf "║  $C_BLU$host$C_RST\x09│  [--]$C_RED""NOT RESOLVED$C_RST\x09│\x09\x09\x09│\x09 ║\n"
+		fi
 	done
 #	printf "║                                                               ║\n"
 	printf "╚═══════════════╧═══════════════════════╧═══════════════════════╧════════╝\n"

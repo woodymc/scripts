@@ -42,7 +42,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╔════════════════════════════════════════════════════════════════════════╗\n"
 	printf "║		     $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09\x09 ║\n"
 	printf "╟───────────────┬───────────────────────┬───────────────────────┬────────╢ \n"
-	printf "║      url	│	   IP		│          ping 	│  loss  ║ \n"
+	printf "║      url	│   through IP point	│    ping (to point) 	│  loss  ║ \n"
 	printf "╟───────────────┼───────────────────────┼───────────────────────┼────────╢ \n"
 	for host in ${IDENTHOSTS}; do
                 ip=$(curl -s --interface $iface $host)

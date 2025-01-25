@@ -54,7 +54,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 			if [ "$loss" == 100 ]; then
 				printf "║  $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST] $ip\x09│$C_RED    Not response$C_RST\x09│$C_YEL  $loss\x25$C_RST\x09 ║\n"
 			else
-				printf "║  $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST] $ip\x09│    $avg(AVG)$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
+				printf "║  $C_BLU$host$C_RST\x09│  [$C_GRN$geo$C_RST] $ip\x09│  AWG ~ $avg$C_RST\x09│$C_YEL   $loss\x25$C_RST\x09 ║\n"
 			fi
 		else
 			printf "║  $C_BLU$host$C_RST\x09│  [--]$C_RED NOT RESOLVED$C_RST\x09│\x09\x09\x09│\x09 ║\n"

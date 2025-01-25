@@ -74,4 +74,4 @@ config conf 'web'
 	option name 'web-#$client'
 EOF
 
-service frpc restart
+#service frpc restart

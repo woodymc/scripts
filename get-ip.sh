@@ -25,7 +25,7 @@ while getopts "i:c:" opt; do
 	case "$opt" in
 		i ) iface="$OPTARG";;
 		c ) cnt="$OPTARG";;
-		e ) IDENTHOSTS = "$IDENTHOSTS-EXT";;
+		e ) IDENTHOSTS = $IDENTHOSTS-EXT;;
 		h ) helpShow;;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac

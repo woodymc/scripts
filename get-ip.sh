@@ -20,6 +20,7 @@ HelpShow()	{
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"
+	echo ""
 	exit 1 # Exit script after printing help
 }
 
@@ -40,7 +41,7 @@ CheckProgramm()	{
 		upd=true
 		echo -e "check pgm $pgm"
 		if ! $(opkg list-installed | grep -q $pgm); then
-			if [ upd ] then
+			if [ $upd ]; then
 				opkg update -V0
 				upd=false
 			fi

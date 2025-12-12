@@ -24,10 +24,10 @@ HelpShow()	{
 
 while getopts "i:c:" opt; do
 	case "$opt" in
-		i ) iface="$OPTARG";;
-		c ) cnt="$OPTARG";;
-		h ) helpShow;;
-		x ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
+		-i | --interface) iface="$OPTARG";;
+		-c | --ping-counts ) cnt="$OPTARG";;
+		-h | --help ) helpShow;;
+		-x | --extended-hosts ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done

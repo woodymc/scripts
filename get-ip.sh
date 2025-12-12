@@ -12,6 +12,7 @@ IDENTHOSTS='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net'
 IDENTHOSTS_EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ip.sb icanhazip.com ident.me eth0.me'
 cnt=10
 iface="tun0"
+extended=false
 
 HelpShow()	{
 	echo ""
@@ -26,8 +27,8 @@ while getopts "i:c:hx" opt; do
 	case "$opt" in
 		i ) iface="$OPTARG";;
 		c ) cnt="$OPTARG";;
-		h ) helpShow;;
-		x ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
+		h ) HelpShow;;
+		x ) extended=true;;
 		\? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done
@@ -47,7 +48,12 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╟───────────────┬───────────────────────┬───────────────┬────────╢ \n"
 	printf "║     host	│   through IP point	│   ping(AVG)	│  loss  ║ \n"
 	printf "╟───────────────┼───────────────────────┼───────────────┼────────╢ \n"
-	for host in ${IDENTHOSTS}; do					
+	if [ $extended ]; then
+		hosts=$IDENTHOSTS_EXT;
+	else
+		hosts=$IDENTHOSTS;
+	fi
+	for host in ${hosts}; do					
 		ip=$(curl -s --interface $iface $host)
 		if [[ -n "$ip" ]]; then
 			resp=$(ping -q -c $cnt -W 2 $ip)

@@ -36,17 +36,21 @@ done
 
 # Check and install opkg programm
 CheckProgramm()	{
-	echo -e "check pgm $1"
-	if ! $(opkg list-installed | grep -q $1); then
-		opkg update -V0
-	 	opkg install $1 -V0
-	fi
+	for pgm in ${1}; do
+		upd=true
+		echo -e "check pgm $pgm"
+		if ! $(opkg list-installed | grep -q $pgm); then
+			if [ upd ] then
+				opkg update -V0
+				upd=false
+			fi
+	 		opkg install $pgm -V0
+		fi
+	done
 }
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
-	for pgm in ${prog_use}; do
-		CheckProgramm $pgm
-	done
+	CheckProgramm $prog_use
 	printf "╔════════════════════════════════════════════════════════════════╗\n"
 	printf "║		 $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09 ║\n"
 	printf "╟───────────────┬───────────────────────┬───────────────┬────────╢ \n"

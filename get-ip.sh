@@ -30,7 +30,7 @@ while getopts ":i:c:hx" opt; do
 		c ) cnt="$OPTARG";;
 		h ) HelpShow;;
 		x ) extended=true;;
-		: )	printf "$C_YELOption -$OPTARG requires an argument.$C_RST"; HelpShow;;
+		: )	printf "$C_YEL Option -$OPTARG requires an argument.$C_RST\n"; HelpShow;;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done

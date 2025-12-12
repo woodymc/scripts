@@ -18,7 +18,7 @@ HelpShow()	{
 	echo "Usage: $0 -f folder -u"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
-	echo -e "\t-x extended hosts"
+#	echo -e "\t-x extended hosts"
 	exit 1 # Exit script after printing help
 }
 
@@ -26,8 +26,8 @@ while getopts "i:c:" opt; do
 	case "$opt" in
 		i ) iface="$OPTARG";;
 		c ) cnt="$OPTARG";;
-		x ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
 		h ) helpShow;;
+#		x ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done

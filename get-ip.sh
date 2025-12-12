@@ -16,20 +16,21 @@ extended=false
 
 HelpShow()	{
 	echo ""
-	echo "Usage: $0 [ -i <STRING> -c <NUM> -x ]"
+	echo "Usage: $0 [-i <STRING> -c <NUM> -x]"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"
 	exit 1 # Exit script after printing help
 }
 
-while getopts "i:c:hx" opt; do
+while getopts ":i:c:hx" opt; do
 	case "$opt" in
 		i ) iface="$OPTARG";;
 		c ) cnt="$OPTARG";;
 		h ) HelpShow;;
 		x ) extended=true;;
-		\? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
+		: )	echo "Option -$OPTARG requires an argument.";;
+		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done
 

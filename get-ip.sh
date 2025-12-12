@@ -15,7 +15,7 @@ iface="tun0"
 
 HelpShow()	{
 	echo ""
-	echo "Usage: $0 -i <STRING> -c <NUM> -x"
+	echo "Usage: $0 [ -i <STRING> -c <NUM> -x ]"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"

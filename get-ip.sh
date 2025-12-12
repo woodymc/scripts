@@ -9,7 +9,7 @@ C_RST="\033[0m"
 
 printf "\033c" //clear screen
 IDENTHOSTS='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net'
-IDENTHOSTS_EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ip.sb icanhazip.com ident.me eth0.me'
+IDENTHOSTS_EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ident.me eth0.me ip.sb'
 cnt=10
 iface="tun0"
 extended=false

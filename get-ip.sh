@@ -37,9 +37,8 @@ done
 
 # Check and install opkg programm
 CheckProgramm()	{
+	upd=true
 	for pgm in ${1}; do
-		upd=true
-		echo -e "check pgm $pgm"
 		if ! $(opkg list-installed | grep -q $pgm); then
 			if [ $upd ]; then
 				opkg update -V0

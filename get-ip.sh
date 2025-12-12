@@ -22,7 +22,7 @@ HelpShow()	{
 	exit 1 # Exit script after printing help
 }
 
-while getopts "i:c:" opt; do
+while getopts "i:c:hx" opt; do
 	case "$opt" in
 		i | -interface) iface="$OPTARG";;
 		c | -ping-counts ) cnt="$OPTARG";;

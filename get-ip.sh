@@ -9,7 +9,7 @@ C_RST="\033[0m"
 
 printf "\033c" //clear screen
 IDENTHOSTS='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net'
-IDENTHOSTS-EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ip.sb icanhazip.com ident.me eth0.me'
+IDENTHOSTS_EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ip.sb icanhazip.com ident.me eth0.me'
 cnt=10
 iface="tun0"
 
@@ -26,7 +26,7 @@ while getopts "i:c:" opt; do
 	case "$opt" in
 		i ) iface="$OPTARG";;
 		c ) cnt="$OPTARG";;
-		e ) IDENTHOSTS = $IDENTHOSTS-EXT;;
+		e ) IDENTHOSTS = $IDENTHOSTS_EXT;;
 		h ) helpShow;;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac

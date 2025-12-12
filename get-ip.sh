@@ -40,7 +40,7 @@ CheckProgramm()	{
 	upd=true
 	for pgm in ${1}; do
 		if ! $(opkg list-installed | grep -q $pgm); then
-			if [ $upd == true ]; then
+			if $upd; then
 				opkg update -V0
 				upd=false
 			fi
@@ -56,7 +56,7 @@ if [[ -n "$(ip a | grep $iface)" ]]; then
 	printf "╟───────────────┬───────────────────────┬───────────────┬────────╢ \n"
 	printf "║     host	│   through IP point	│   ping(AVG)	│  loss  ║ \n"
 	printf "╟───────────────┼───────────────────────┼───────────────┼────────╢ \n"
-	if [ $extended == true ]; then
+	if $extended; then
 		hosts=$IDENTHOSTS_EXT;
 	else
 		hosts=$IDENTHOSTS;

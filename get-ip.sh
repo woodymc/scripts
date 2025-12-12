@@ -16,7 +16,7 @@ extended=false
 
 HelpShow()	{
 	echo ""
-	echo "Usage: $0 [-i <STRING> -c <NUM> -x]"
+	echo "Usage: $C_BLU$0$C_RST [-i <STRING> -c <NUM> -x]"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"
@@ -29,7 +29,7 @@ while getopts ":i:c:hx" opt; do
 		c ) cnt="$OPTARG";;
 		h ) HelpShow;;
 		x ) extended=true;;
-		: )	echo "Option -$OPTARG requires an argument.";;
+		: )	echo "$C_YELOption -$OPTARG requires an argument.$C_RST"; HelpShow;;
 		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done

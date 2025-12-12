@@ -16,7 +16,7 @@ extended=false
 prog_use='jq curl'
 
 HelpShow()	{
-	printf "\nUsage: $C_BLU$0$C_RST [-i <STRING> -c <NUM> -x]\n\n"
+	printf "\n Usage: $C_BLU$0$C_RST [-i <STRING> -c <NUM> -x]\n\n"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"

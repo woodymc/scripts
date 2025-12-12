@@ -28,7 +28,7 @@ while getopts "i:c:" opt; do
 		c | -ping-counts ) cnt="$OPTARG";;
 		h | -help ) helpShow;;
 		x | -extended-hosts ) IDENTHOSTS = "$IDENTHOSTS_EXT";;
-		? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
+		\? ) echo "Use -h flag for help."; exit;; # Print case parameter is non-existent
 	esac
 done
 

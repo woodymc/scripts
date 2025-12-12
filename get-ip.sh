@@ -13,10 +13,11 @@ IDENTHOSTS_EXT='2ip.ru 2ip.io ifconfig.co ifconfig.me showip.net ident.me eth0.m
 cnt=10
 iface="tun0"
 extended=false
+prog_use='jq curl'
 
 HelpShow()	{
 	echo ""
-	printf "Usage: $C_BLU$0$C_RST [-i <STRING> -c <NUM> -x]"
+	printf "Usage: $C_CYN$0$C_RST [-i <STRING> -c <NUM> -x]\n"
 	echo -e "\t-i interface name"
 	echo -e "\t-с ping count"
 	echo -e "\t-x extended hosts"
@@ -43,7 +44,9 @@ CheckProgramm()	{
 }
 
 if [[ -n "$(ip a | grep $iface)" ]]; then
-	CheckProgramm 'jq'
+	for pgm in ${prog_use}; do
+		CheckProgramm $pgm
+	done
 	printf "╔════════════════════════════════════════════════════════════════╗\n"
 	printf "║		 $C_GRN Check route via $C_MGT$iface$C_GRN interface$C_RST\x09\x09 ║\n"
 	printf "╟───────────────┬───────────────────────┬───────────────┬────────╢ \n"

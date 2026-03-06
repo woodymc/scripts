@@ -20,9 +20,15 @@ uci commit
 # upgrade all installed packages
 opkg list-upgradable | cut -f 1 -d ' ' | xargs opkg upgrade
 # install new packages
-opkg install nano curl jq luci-mod-dashboard
+opkg install nano curl jq luci-mod-dashboard kmod-nft-tproxy dnscrypt-proxy2
+# upgrade dnsmasq to dnsmasq-full
+cd /tmp/ && opkg download dnsmasq-full
+opkg remove dnsmasq
+opkg install dnsmasq-full --cache /tmp/
+rm -f /tmp/dnsmasq-full*.ipk
 # install system temperature sensors viewer
-wget --no-check-certificate -O /tmp/luci-app-temp-status_0.4.1-r1_all.ipk https://github.com/gSpotx2f/packages-openwrt/raw/master/current/luci-app-temp-status_0.4.1-r1_all.ipk
-opkg install /tmp/luci-app-temp-status_0.4.1-r1_all.ipk
-rm /tmp/luci-app-temp-status_0.4.1-r1_all.ipk
+#wget --no-check-certificate -O /tmp/luci-app-temp-status_0.4.1-r1_all.ipk https://github.com/gSpotx2f/packages-openwrt/raw/master/current/luci-app-temp-status_0.4.1-r1_all.ipk
+#opkg install /tmp/luci-app-temp-status_0.4.1-r1_all.ipk
+#rm /tmp/luci-app-temp-status_0.4.1-r1_all.ipk
+
 /etc/init.d/rpcd reload

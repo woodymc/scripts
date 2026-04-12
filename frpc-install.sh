@@ -36,7 +36,7 @@ while getopts "a:c:hp:t:" opt; do
 done
 
 verOS=$(cat /etc/os-release | grep 'VERSION=' | cut -d'"' -f2 | cut -d '.' -f 1)
-
+echo $verOS
 if [[ $verOS -gt 24 ]]; then
 	apk update && apk add frpc
 else

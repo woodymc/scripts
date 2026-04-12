@@ -14,8 +14,6 @@ web_remote_port=8000	# start port for client
 
 client=0
 
-re='^[0-9]+$'
-
 HelpShow()	{
 	echo ""
 	echo "Usage: $0 -a addr -c client -p port -t token"
@@ -37,14 +35,19 @@ while getopts "a:c:hp:t:" opt; do
 	esac
 done
 
-opkg update && opkg install frpc
+verOS=$(cat /etc/os-release | grep 'VERSION=' | cut -d'"' -f2 | cut -d '.' -f 1)
+
+if [[ $osVer -gt 24 ]]; then
+	apk update && apk add frpc
+else
+	opkg update && opkg install frpc
+fi
 
 ssh_remote_port=$(( $ssh_remote_port + $client ))
 web_remote_port=$(( $web_remote_port + $client ))
 
 cat <<EOF >$FILE_PATH
 #$FILE_PATH
-
 config init
 	option stdout '1'
 	option stderr '1'
@@ -74,4 +77,4 @@ config conf 'web'
 	option name 'web-#$client'
 EOF
 
-#service frpc restart
+service frpc restart

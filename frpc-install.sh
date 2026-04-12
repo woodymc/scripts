@@ -37,7 +37,7 @@ done
 
 verOS=$(cat /etc/os-release | grep 'VERSION=' | cut -d'"' -f2 | cut -d '.' -f 1)
 
-if [[ $osVer -gt 24 ]]; then
+if [[ $verOS -gt 24 ]]; then
 	apk update && apk add frpc
 else
 	opkg update && opkg install frpc

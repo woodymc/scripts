@@ -40,13 +40,16 @@ chmod go= $SERVER_KEY_PATH/public.key
 
 def_sys_int=$(ip route list default | awk -F "dev " '{ print $2 }' | cut -d ' ' -f1)
 
+subnet=$( $WG_GATEWAY | awk -F. '{print $1"."$2"." $3"."0}')
+
 cat <<EOF > $WG_CFG_PATH$wg_server_name.conf
 [Interface]
 PrivateKey = $serverPrivateKey
 Address = $WG_GATEWAY
 ListenPort = $WG_IN_PORT
-PostUp = iptables -A FORWARD -i $wg_server_name -j ACCEPT; iptables -t nat -A POSTROUTING -o $def_sys_int -j MASQUERADE 
-PostDown = iptables -D FORWARD -i $wg_server_name -j ACCEPT; iptables -t nat -D POSTROUTING -o $def_sys_int -j MASQUERADE
+PostUp =   iptables -I FORWARD 1 -i %i -j ACCEPT; iptables -I FORWARD 1 -o %i -j ACCEPT; iptables -t nat -I POSTROUTING 1 -s $subnet/24 -o $def_sys_int -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT;   iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -s $subnet/24 -o $def_sys_int -j MASQUERADE
+
 EOF
 
 FILEPATH='/etc/sysctl.conf'

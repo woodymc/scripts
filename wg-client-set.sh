@@ -54,12 +54,15 @@ cat <<EOF > $CLIENT_CFG_PATH/client.conf
 [Interface]
 PrivateKey = $clientPrivateKey
 Address = $clientIP
+MTU = 1420
+Table = off
+
 
 [Peer]
 PublicKey = $serverPublicKey
 Endpoint = $server_public_ip:$serverPort
-AllowedIPs = $(echo $serverAddr | cut -d. -f1,2,3).0/24
-PersistentKeepalive = 25
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 120
 EOF
 
 cat <<EOF >> $WG_CFG_PATH

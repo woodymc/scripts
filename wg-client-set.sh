@@ -57,7 +57,6 @@ Address = $clientIP
 MTU = 1420
 Table = off
 
-
 [Peer]
 PublicKey = $serverPublicKey
 Endpoint = $server_public_ip:$serverPort

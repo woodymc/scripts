@@ -40,7 +40,7 @@ chmod go= $SERVER_KEY_PATH/public.key
 
 def_sys_int=$(ip route list default | awk -F "dev " '{ print $2 }' | cut -d ' ' -f1)
 
-subnet=$( $WG_GATEWAY | awk -F. '{print $1"."$2"." $3"."0}')
+subnet=$( echo $WG_GATEWAY | awk -F. '{print $1"."$2"." $3"."0}')
 
 cat <<EOF > $WG_CFG_PATH$wg_server_name.conf
 [Interface]

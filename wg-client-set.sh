@@ -50,7 +50,7 @@ clientIP=$(echo $lastClientAddr | cut -d. -f1,2,3).$(($( echo echo $lastClientAd
 server_public_ip=$(curl ifconfig.io --silent)
 serverPublicKey=$(cat /etc/wireguard/$wg_server_name/public.key)
 
-cat <<EOF > $CLIENT_CFG_PATH/wg-$wg_client_name.conf
+cat <<EOF > $CLIENT_CFG_PATH/client.conf
 [Interface]
 PrivateKey = $clientPrivateKey
 Address = $clientIP

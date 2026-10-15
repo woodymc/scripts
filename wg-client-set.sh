@@ -46,9 +46,7 @@ lastClientAddr=$(grep "AllowedIPs" $WG_CFG_PATH | tail -1 | awk -F ' ' '{ print 
 if [ -z "$lastClientAddr" ]; then 
 	lastClientAddr=$serverAddr
 fi
-echo "last IP $lastClientAddr | serv addr $serverAddr"
 clientIP=$(echo $lastClientAddr | cut -d. -f1,2,3).$(($( echo echo $lastClientAddr | awk '{split($2,a,".") ;print a[4]}') + 1))
-echo "client IP $clientIP"
 server_public_ip=$(curl ifconfig.io --silent)
 serverPublicKey=$(cat /etc/wireguard/$wg_server_name/public.key)
 

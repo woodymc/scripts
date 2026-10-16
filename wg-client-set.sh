@@ -47,7 +47,7 @@ if [ -z "$lastClientAddr" ]; then
 	lastClientAddr=$serverAddr
 fi
 clientIP=$(echo $lastClientAddr | cut -d. -f1,2,3).$(($( echo echo $lastClientAddr | awk '{split($2,a,".") ;print a[4]}') + 1))
-server_public_ip=$(curl ifconfig.io --silent)
+server_public_ip=$(curl ifconfig.io -4 --silent)
 serverPublicKey=$(cat /etc/wireguard/$wg_server_name/public.key)
 
 cat <<EOF > $CLIENT_CFG_PATH/client.conf
